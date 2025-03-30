@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator Handlu Punktami Premium</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="script.js"></script>
+</head>
+<body>
+  <h1>Kalkulator Inwestycyjny</h1>
+  <h3 style="text-align: center;">Premium Points 💵</h3>
+  
+  <label for="calcType">Wybierz sposób obliczeń:</label>
+  <select id="calcType" onchange="toggleInput()">
+    <option value="budget">Oblicz na podstawie budżetu</option>
+    <option value="quantity">Oblicz na podstawie ilości punktów</option>
+  </select>
+  
+  <div id="budgetInput">
+    <label for="budget">Budżet (PLN):</label>
+    <input type="number" id="budget" placeholder="Wpisz swój budżet" step="any">
+  </div>
+  
+  <div id="quantityInput" style="display: none;">
+    <label for="quantity">Ilość punktów:</label>
+    <input type="number" id="quantity" placeholder="Wpisz ilość punktów" step="1">
+  </div>
+
+  <label for="buyRate">Stawka skupu (PLN za punkt):</label>
+  <input type="number" id="buyRate" placeholder="Wpisz stawkę skupu" step="any">
+
+  <label for="sellRate">Stawka sprzedaży (PLN za punkt):</label>
+  <input type="number" id="sellRate" value="7" placeholder="Wpisz stawkę sprzedaży" step="any">
+  <small>Domyślnie stawka ustalona na 7PLN/szt ( Średnia optymalna cena )</small>
+  <label for="round">Zaokrąglanie:</label>
+  <select id="round">
+    <option value="round">Zaokrąglenie do liczby</option>
+    <option value="error_margin">Błąd pomiarowy</option>
+    <option value="none">Brak</option>
+  </select>
+
+  <button onclick="calculate()">Oblicz ✅</button>
+
+  <div class="result" id="result"></div>
+  <footer>
+    Strona stworzona przez<a href="https://mta4life.pl/profile/85807-nozer/"> Nozer</a>'a
+    <p>Dla graczy MTA 4life</p>
+  </footer>
+</body>
+</html>
