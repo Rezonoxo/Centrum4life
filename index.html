@@ -1,51 +1,34 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>Kalkulator Handlu Punktami Premium</title>
-  <link rel="stylesheet" href="style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulatory 4Life</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Kalkulator Inwestycyjny</h1>
-  <h3 style="text-align: center;">Premium Points 💵</h3>
-  
-  <label for="calcType">Wybierz sposób obliczeń:</label>
-  <select id="calcType" onchange="toggleInput()">
-    <option value="budget">Oblicz na podstawie budżetu</option>
-    <option value="quantity">Oblicz na podstawie ilości punktów</option>
-  </select>
-  
-  <div id="budgetInput">
-    <label for="budget">Budżet (PLN):</label>
-    <input type="number" id="budget" placeholder="Wpisz swój budżet" step="any">
-  </div>
-  
-  <div id="quantityInput" style="display: none;">
-    <label for="quantity">Ilość punktów:</label>
-    <input type="number" id="quantity" placeholder="Wpisz ilość punktów" step="1">
-  </div>
-
-  <label for="buyRate">Stawka skupu (PLN za punkt):</label>
-  <input type="number" id="buyRate" placeholder="Wpisz stawkę skupu" step="any">
-
-  <label for="sellRate">Stawka sprzedaży (PLN za punkt):</label>
-  <input type="number" id="sellRate" value="7" placeholder="Wpisz stawkę sprzedaży" step="any">
-  <small>Domyślnie stawka ustalona na 7PLN/szt ( Średnia optymalna cena )</small>
-  <label for="round">Zaokrąglanie:</label>
-  <select id="round">
-    <option value="round">Zaokrąglenie do liczby</option>
-    <option value="error_margin">Błąd pomiarowy</option>
-    <option value="none">Brak</option>
-  </select>
-
-  <button onclick="calculate()">Oblicz ✅</button>
-
-  <div class="result" id="result"></div>
-  <footer>
-    Strona stworzona przez<a href="https://mta4life.pl/profile/85807-nozer/"> Nozer</a>'a
-    <p>Dla graczy MTA 4life</p>
-  </footer>
+    <h1>Kalkulatory 4Life</h1>
+    <div class="button-container">
+        <a href="kalkulator_pp.html" class="calc-button">Kalkulator PP</a>
+        <a href="#" class="calc-button">Kalkulator 2 (Wkrótce)</a>
+        <a href="#" class="calc-button">Kalkulator 3 (Wkrótce)</a>
+    </div>
+    <footer>
+        <footer>
+            Strona stworzona przez<a href="https://mta4life.pl/profile/85807-nozer/"> Nozer</a>'a
+            <p>Wszelkie prawa zastrzeżone</p>
+          </footer>
+    </footer>
 </body>
+<script>
+    function checkPassword() {
+        let password = prompt("Podaj kod dostępu:");
+        if (password !== "rezon") {
+            alert("Niepoprawny kod! Dostęp zabroniony.");
+            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        }
+    }
+    window.onload = checkPassword;
+</script>
+
 </html>
