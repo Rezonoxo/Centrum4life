@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Tuningowy 4Life</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="tuning.css">
+</head>
+<body class="body">
+    <button onclick="window.location.href='index.html'">STRONA GŁÓWNA</button>
+    <div class="container">
+        <header>
+            <h1>KALKULATOR TUNINGU</h1>
+        </header>
+        <nav>
+            <button id="carValue" class="btn btn-primary w-100 my-3">OBLICZ WARTOŚĆ TUNINGU</button>
+            <div id="result" class="alert alert-success d-none">
+                <h4>Wartość tuningu: <span id="totalValue">0</span> PLN</h4>
+                <div id="breakdown"></div>
+            </div>
+        </nav>
+        <main>
+            <div class="row">
+                <div class="col-md-6">
+                    <select id="engine" class="form-select mb-3" aria-label="Silnik">
+                        <option selected value="0">SILNIK</option>
+                        <option value="0">1.6</option>
+                        <option value="100000">1.8</option>
+                        <option value="225000">2.0</option>
+                        <option value="375000">2.2</option>
+                    </select>
+
+                    <select id="rims" class="form-select mb-3" aria-label="Felgi">
+                        <option selected value="0">FELGI</option>
+                        <option value="0">NIE POSIADA</option>
+                        <option value="2250">OFF-ROAD (1025)</option>
+                        <option value="2750">SHADOW (1073)</option>
+                        <option value="3375">MEGA (1074)</option>
+                        <option value="2375">RIMSHINE (1075)</option>
+                        <option value="3750">WIRES (1076)</option>
+                        <option value="3000">CLASSIC (1077)</option>
+                        <option value="2750">TWIST (1078)</option>
+                        <option value="3000">CUTTER (1079)</option>
+                        <option value="2750">SWITCH (1080)</option>
+                        <option value="2750">GROVE (1081)</option>  
+                        <option value="3000">IMPORT (1082)</option> 
+                        <option value="1000">DOLLAR (1083)</option>
+                        <option value="2750">TRANCE (1084)</option>
+                        <option value="3000">ATOMIC (1085)</option>
+                        <option value="3000">AHAB (1096)</option>
+                    </select>
+
+                    <select id="spoiler" class="form-select mb-3" aria-label="Spojler">
+                        <option selected value="0">SPOJLER</option>
+                        <option value="0">NIE POSIADA</option>
+                        <option value="4400">Pro (1000)</option>
+                        <option value="5500">Win (1001)</option>
+                        <option value="4400">Drag (1002)</option>
+                        <option value="5500">Alpha (1003)</option>
+                        <option value="2800">Champ (1014)</option>
+                        <option value="4400">Race (1015)</option>
+                        <option value="4600">Wrox (1016)</option>
+                        <option value="5100">Fury (1023)</option>
+                        <option value="3400">Alien (1049)</option>
+                        <option value="2800">X-Flow (1050)</option>
+                        <option value="2800">Alien (1058)</option>
+                        <option value="3700">X-Flow (1060)</option>
+                        <option value="8300">Alien (1138)</option>
+                        <option value="7200">X-Flow (1139)</option>
+                        <option value="6400">X-Flow (1146)</option>
+                        <option value="7700">Alien (1147)</option>
+                        <option value="9000">X-Flow (1158)</option>
+                        <option value="6400">Alien (1162)</option>
+                        <option value="4000">X-Flow (1163)</option>
+                        <option value="9000">Alien (1164)</option>
+                    </select>
+
+                    <select id="abs" class="form-select mb-3" aria-label="ABS">
+                        <option selected value="0">ABS</option>
+                        <option value="0">NIE POSIADA</option>
+                        <option value="18000">Posiada</option>
+                    </select>
+
+                    <select id="fuel" class="form-select mb-3" aria-label="Bak paliwa">
+                        <option selected value="0">BAK PALIWA</option>
+                        <option value="0">35 Litrów</option>
+                        <option value="25000">50 Litrów</option>
+                        <option value="35000">75 Litrów</option>
+                        <option value="45000">90 Litrów</option>
+                    </select>
+
+                    <select id="lpg" class="form-select mb-3" aria-label="LPG">
+                        <option selected value="0">BUTLA LPG</option>
+                        <option value="0">Nie posiada</option>
+                        <option value="20000">25 Litrów</option>
+                        <option value="32000">50 Litrów</option>    
+                        <option value="50000">75 Litrów</option>
+                    </select>
+
+                    <select id="nitro" class="form-select mb-3" aria-label="Nitro">
+                        <option selected value="0">NITRO</option>
+                        <option value="0">NIE POSIADA</option>
+                        <option value="360000">Posiada</option>
+                    </select>
+
+                    <select id="fakeNitro" class="form-select mb-3" aria-label="Atrapa nitro">
+                        <option selected value="0">ATRAPA NITRO</option>
+                        <option value="0">Nie posiada</option>
+                        <option value="40000">Duża butla (1008)</option>
+                        <option value="20000">Mała butla (1009)</option>
+                        <option value="35000">Dwie małe butle (1010)</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <select id="glass" class="form-select mb-3" aria-label="Przyciemnianie szyb">
+                        <option selected value="0">PRZYCIEMNIANIE SZYB</option>
+                        <option value="0">Nie posiada</option>
+                        <option value="15000">80%</option>
+                        <option value="35000">60%</option>   
+                        <option value="55000">40%</option>
+                        <option value="75000">20%</option>
+                    </select>
+
+                    <select id="hydra" class="form-select mb-3" aria-label="Hydraulika">
+                        <option selected value="0">HYDRAULIKA</option>
+                        <option value="0">Nie posiada</option>
+                        <option value="33000">Posiada</option>
+                    </select>
+
+                    <select id="limiter" class="form-select mb-3" aria-label="Ogranicznik">
+                        <option selected value="0">OGRANICZNIK</option>
+                        <option value="0">NIE POSIADA</option>
+                        <option value="2000">POSIADA</option>
+                    </select>
+
+                    <select id="fotoradar" class="form-select mb-3" aria-label="Wykrywacz fotoradarów">
+                        <option selected value="0">WYKRYWACZ FOTORADARÓW</option>
+                        <option value="0">NIE POSIADA</option>
+                        <option value="5000">POSIADA</option>
+                    </select>
+
+                    <select id="radio" class="form-select mb-3" aria-label="CB Radio">
+                        <option selected value="0">CB RADIO</option>
+                        <option value="0">NIE POSIADA</option>
+                        <option value="1400">Posiada</option>
+                    </select>
+
+
+                    <select id="eTransport" class="form-select mb-3" aria-label="E-Transporter">
+                        <option selected value="0">E-TRANSPORTER</option>
+                        <option value="0">Nie posiada</option>
+                        <option value="30000">Posiada</option>
+                    </select>
+
+                    <select id="keys" class="form-select mb-3" aria-label="Klucze">
+                        <option selected value="0">KLUCZE</option>
+                        <option value="0">0</option>
+                        <option value="15000">1</option>
+                        <option value="30000">2</option>
+                        <option value="45000">3</option>
+                        <option value="60000">4</option>
+                        <option value="75000">5</option>
+                        <option value="90000">6</option>
+                        <option value="105000">7</option>
+                        <option value="120000">8</option>
+                        <option value="135000">9</option>
+                        <option value="150000">10</option>
+                        <option value="165000">11</option>
+                        <option value="180000">12</option>
+                        <option value="195000">13</option>
+                        <option value="210000">14</option>
+                        <option value="225000">15</option>
+                    </select>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="tuning.js"></script>
+</body>
+</html>
