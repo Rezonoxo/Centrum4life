@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator Węgla 4Life</title>
+    <link rel="stylesheet" href="wegiel.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        button.price-btn {
+            margin: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            display: inline-block;
+            width: calc(33.33% - 20px);
+            text-align: center;
+            box-sizing: border-box;
+        }
+        div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+        #checkbox-label {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .checkbox-label input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        h1 {
+            font-size: 1.9em;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" style="text-decoration: none;">
+        <button style="margin: 10px; padding: 10px 20px; cursor: pointer;">Strona Główna</button>
+    </a>
+    <h1>🪨Kalkulator zarobku z węgla 🪨</h1>
+
+    <label for="mode">Wybierz sposób wprowadzenia ilości węgla:</label>
+    <select id="mode" onchange="toggleCoalInput()">
+        <option value="manual">Ręczne wprowadzenie</option>
+        <option value="auto">Automatyczne obliczenie (czas + poziom)</option>
+    </select>
+
+    <div id="manualInput">
+        <label for="coalKg">Ilość węgla (kg):</label>
+        <input type="number" id="coalKg" placeholder="Np. 150" step="any">
+    </div>
+
+    <div id="autoInput" style="display: none;">
+        <label for="rank">Poziom górnika:</label>
+        <select id="rank">
+            <option value="1">Poziom 1 (50kg/8min)</option>
+            <option value="2">Poziom 2 (60kg/8min)</option>
+            <option value="3">Poziom 3 (75kg/9min)</option>
+        </select>
+
+        <label for="time">Czas zbierania (w minutach):</label>
+        <input type="number" id="time" placeholder="Np. 30" step="1">
+    </div>
+
+    <label for="calculationMode">Wybierz tryb obliczeń:</label>
+    <select id="calculationMode">
+        <option value="exact">Dokładny</option>
+        <option value="margin">Z marginesem błędu (-10%)</option>
+    </select>
+
+    <label for="price">Cena za kg:</label>
+    <input type="number" id="price" placeholder="Np. 11.5" step="any">
+    <div>
+        <button class="price-btn" onclick="setPrice(10)">10 PLN/kg</button>
+        <button class="price-btn" onclick="setPrice(11)">11 PLN/kg</button>
+        <button class="price-btn" onclick="setPrice(11.5)">11.5 PLN/kg</button>
+    </div>
+
+    <label class="checkbox-label">
+        <input type="checkbox" id="deductDeposit" style="width: 20px; height: 20px; cursor: pointer;">
+        <span>Odejmij koszt kaucji za wywóz (1000 PLN)</span>
+    </label>
+
+    <button onclick="calculateCoal()">Oblicz zarobek 💰</button>
+
+    <div id="result" class="result"></div>
+    <footer>
+        Stworzone przez <a href="https://mta4life.pl/profile/85807-nozer/">Nozer</a>'a
+    </footer>
+
+    <script src="wegiel.js"></script>
+</body>
+</html>
