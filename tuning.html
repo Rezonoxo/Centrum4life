@@ -3,180 +3,447 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator Tuningowy 4Life</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Kalkulator pojazdów</title>
     <link rel="stylesheet" href="tuning.css">
 </head>
-<body class="body">
-    <button onclick="window.location.href='index.html'">STRONA GŁÓWNA</button>
-    <div class="container">
-        <header>
-            <h1>KALKULATOR TUNINGU</h1>
-        </header>
-        <nav>
-            <button id="carValue" class="btn btn-primary w-100 my-3">OBLICZ WARTOŚĆ TUNINGU</button>
-            <div id="result" class="alert alert-success d-none">
-                <h4>Wartość tuningu: <span id="totalValue">0</span> PLN</h4>
-                <div id="breakdown"></div>
-            </div>
-        </nav>
-        <main>
-            <div class="row">
-                <div class="col-md-6">
-                    <select id="engine" class="form-select mb-3" aria-label="Silnik">
-                        <option selected value="0">SILNIK</option>
-                        <option value="0">1.6</option>
-                        <option value="100000">1.8</option>
-                        <option value="225000">2.0</option>
-                        <option value="375000">2.2</option>
-                    </select>
-
-                    <select id="rims" class="form-select mb-3" aria-label="Felgi">
-                        <option selected value="0">FELGI</option>
-                        <option value="0">NIE POSIADA</option>
-                        <option value="2250">OFF-ROAD (1025)</option>
-                        <option value="2750">SHADOW (1073)</option>
-                        <option value="3375">MEGA (1074)</option>
-                        <option value="2375">RIMSHINE (1075)</option>
-                        <option value="3750">WIRES (1076)</option>
-                        <option value="3000">CLASSIC (1077)</option>
-                        <option value="2750">TWIST (1078)</option>
-                        <option value="3000">CUTTER (1079)</option>
-                        <option value="2750">SWITCH (1080)</option>
-                        <option value="2750">GROVE (1081)</option>  
-                        <option value="3000">IMPORT (1082)</option> 
-                        <option value="1000">DOLLAR (1083)</option>
-                        <option value="2750">TRANCE (1084)</option>
-                        <option value="3000">ATOMIC (1085)</option>
-                        <option value="3000">AHAB (1096)</option>
-                    </select>
-
-                    <select id="spoiler" class="form-select mb-3" aria-label="Spojler">
-                        <option selected value="0">SPOJLER</option>
-                        <option value="0">NIE POSIADA</option>
-                        <option value="4400">Pro (1000)</option>
-                        <option value="5500">Win (1001)</option>
-                        <option value="4400">Drag (1002)</option>
-                        <option value="5500">Alpha (1003)</option>
-                        <option value="2800">Champ (1014)</option>
-                        <option value="4400">Race (1015)</option>
-                        <option value="4600">Wrox (1016)</option>
-                        <option value="5100">Fury (1023)</option>
-                        <option value="3400">Alien (1049)</option>
-                        <option value="2800">X-Flow (1050)</option>
-                        <option value="2800">Alien (1058)</option>
-                        <option value="3700">X-Flow (1060)</option>
-                        <option value="8300">Alien (1138)</option>
-                        <option value="7200">X-Flow (1139)</option>
-                        <option value="6400">X-Flow (1146)</option>
-                        <option value="7700">Alien (1147)</option>
-                        <option value="9000">X-Flow (1158)</option>
-                        <option value="6400">Alien (1162)</option>
-                        <option value="4000">X-Flow (1163)</option>
-                        <option value="9000">Alien (1164)</option>
-                    </select>
-
-                    <select id="abs" class="form-select mb-3" aria-label="ABS">
-                        <option selected value="0">ABS</option>
-                        <option value="0">NIE POSIADA</option>
-                        <option value="18000">Posiada</option>
-                    </select>
-
-                    <select id="fuel" class="form-select mb-3" aria-label="Bak paliwa">
-                        <option selected value="0">BAK PALIWA</option>
-                        <option value="0">35 Litrów</option>
-                        <option value="25000">50 Litrów</option>
-                        <option value="35000">75 Litrów</option>
-                        <option value="45000">90 Litrów</option>
-                    </select>
-
-                    <select id="lpg" class="form-select mb-3" aria-label="LPG">
-                        <option selected value="0">BUTLA LPG</option>
-                        <option value="0">Nie posiada</option>
-                        <option value="20000">25 Litrów</option>
-                        <option value="32000">50 Litrów</option>    
-                        <option value="50000">75 Litrów</option>
-                    </select>
-
-                    <select id="nitro" class="form-select mb-3" aria-label="Nitro">
-                        <option selected value="0">NITRO</option>
-                        <option value="0">NIE POSIADA</option>
-                        <option value="360000">Posiada</option>
-                    </select>
-
-                    <select id="fakeNitro" class="form-select mb-3" aria-label="Atrapa nitro">
-                        <option selected value="0">ATRAPA NITRO</option>
-                        <option value="0">Nie posiada</option>
-                        <option value="40000">Duża butla (1008)</option>
-                        <option value="20000">Mała butla (1009)</option>
-                        <option value="35000">Dwie małe butle (1010)</option>
-                    </select>
-                </div>
-
-                <div class="col-md-6">
-                    <select id="glass" class="form-select mb-3" aria-label="Przyciemnianie szyb">
-                        <option selected value="0">PRZYCIEMNIANIE SZYB</option>
-                        <option value="0">Nie posiada</option>
-                        <option value="15000">80%</option>
-                        <option value="35000">60%</option>   
-                        <option value="55000">40%</option>
-                        <option value="75000">20%</option>
-                    </select>
-
-                    <select id="hydra" class="form-select mb-3" aria-label="Hydraulika">
-                        <option selected value="0">HYDRAULIKA</option>
-                        <option value="0">Nie posiada</option>
-                        <option value="33000">Posiada</option>
-                    </select>
-
-                    <select id="limiter" class="form-select mb-3" aria-label="Ogranicznik">
-                        <option selected value="0">OGRANICZNIK</option>
-                        <option value="0">NIE POSIADA</option>
-                        <option value="2000">POSIADA</option>
-                    </select>
-
-                    <select id="fotoradar" class="form-select mb-3" aria-label="Wykrywacz fotoradarów">
-                        <option selected value="0">WYKRYWACZ FOTORADARÓW</option>
-                        <option value="0">NIE POSIADA</option>
-                        <option value="5000">POSIADA</option>
-                    </select>
-
-                    <select id="radio" class="form-select mb-3" aria-label="CB Radio">
-                        <option selected value="0">CB RADIO</option>
-                        <option value="0">NIE POSIADA</option>
-                        <option value="1400">Posiada</option>
-                    </select>
-
-
-                    <select id="eTransport" class="form-select mb-3" aria-label="E-Transporter">
-                        <option selected value="0">E-TRANSPORTER</option>
-                        <option value="0">Nie posiada</option>
-                        <option value="30000">Posiada</option>
-                    </select>
-
-                    <select id="keys" class="form-select mb-3" aria-label="Klucze">
-                        <option selected value="0">KLUCZE</option>
-                        <option value="0">0</option>
-                        <option value="15000">1</option>
-                        <option value="30000">2</option>
-                        <option value="45000">3</option>
-                        <option value="60000">4</option>
-                        <option value="75000">5</option>
-                        <option value="90000">6</option>
-                        <option value="105000">7</option>
-                        <option value="120000">8</option>
-                        <option value="135000">9</option>
-                        <option value="150000">10</option>
-                        <option value="165000">11</option>
-                        <option value="180000">12</option>
-                        <option value="195000">13</option>
-                        <option value="210000">14</option>
-                        <option value="225000">15</option>
-                    </select>
-                </div>
-            </div>
-        </main>
+<body>
+    <h1>Kalkulator pojazdów</h1>
+    
+    <div>
+        <label>Typ obliczeń:</label>
+        <select id="calculationType">
+            <option value="purchase">Zakup</option>
+            <option value="valuation">Wycena</option>
+            <option value="dismantling">Demontaż</option>
+        </select>
     </div>
-    <script src="tuning.js"></script>
+    
+    <div id="tunerSection" style="display: none;">
+        <label>Doliczka tunera (%):</label>
+        <input type="number" id="tunerFee" min="0" placeholder="Wpisz procent doliczki tunera">
+    </div>
+    
+    <div>
+        <label>Typ pojazdu:</label>
+        <select id="vehicleType">
+            <option value="">Wybierz typ pojazdu</option>
+            <option value="car">Samochód</option>
+            <option value="motorcycle">Motocykl</option>
+            <option value="plane">Samolot</option>
+            <option value="boat">Łódź</option>
+        </select>
+    </div>
+    
+    <div id="vehicleSection" style="display: none;">
+        <label>Model pojazdu:</label>
+        <select id="vehicleModel"></select>
+    </div>
+    
+
+    <script>
+        // Obsługa zmiany typu pojazdu i wyświetlanie sekcji felg
+        document.getElementById('vehicleType').addEventListener('change', function() {
+            const wheelSection = document.getElementById('wheelSection');
+            wheelSection.style.display = this.value ? 'block' : 'none';
+        });
+
+        // Obsługa przycisku oblicz z uwzględnieniem felg
+        document.getElementById('calculateBtn').addEventListener('click', function() {
+            const wheelType = document.getElementById('wheelType').value;
+            const selectedWheel = felgi.find(f => f.id == wheelType);
+            let wheelPrice = selectedWheel ? selectedWheel.price : 0;
+
+            if (selectedWheel) {
+                resultDiv.innerHTML += `
+                    <p><strong>Wybrane felgi:</strong> ${selectedWheel.name}</p>
+                    <p><strong>Cena felg:</strong> ${wheelPrice.toFixed(2)} PLN</p>
+                `;
+                price += wheelPrice;
+            }
+        });
+    </script>
+    
+    <button id="calculateBtn">Oblicz</button>
+    
+    <div id="result"></div>
+
+    <script>
+        // Obsługa sortowania pojazdów
+        document.getElementById('vehicleType').addEventListener('change', function() {
+            const vehicleSection = document.getElementById('vehicleSection');
+            const vehicleModelSelect = document.getElementById('vehicleModel');
+            const sortType = document.querySelector('input[name="sortType"]:checked')?.value || 'alphabetical';
+
+            vehicleModelSelect.innerHTML = '';
+
+            if (this.value) {
+            vehicleSection.style.display = 'block';
+            let sortedVehicles = [...vehicles[this.value]];
+
+            if (sortType === 'price') {
+                sortedVehicles.sort((a, b) => a.price - b.price);
+            } else {
+                sortedVehicles.sort((a, b) => a.name.localeCompare(b.name));
+            }
+
+            sortedVehicles.forEach(vehicle => {
+                const option = document.createElement('option');
+                option.value = vehicle.name;
+                option.textContent = `${vehicle.name} (${vehicle.price} PLN)`;
+                vehicleModelSelect.appendChild(option);
+            });
+            } else {
+            vehicleSection.style.display = 'none';
+            }
+        });
+
+        // Dodanie opcji sortowania
+        const sortContainer = document.createElement('div');
+        sortContainer.innerHTML = `
+            <label>Sortuj pojazdy:</label>
+            <label><input type="radio" name="sortType" value="alphabetical" checked> Alfabetycznie</label>
+            <label><input type="radio" name="sortType" value="price"> Po cenie</label>
+        `;
+        document.body.insertBefore(sortContainer, document.getElementById('vehicleSection'));
+
+        // Obsługa zmiany sortowania
+        document.querySelectorAll('input[name="sortType"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+            document.getElementById('vehicleType').dispatchEvent(new Event('change'));
+            });
+        });
+        // Dane pojazdów z tabel
+        const vehicles = {
+            car: [
+                // Cygan tani
+                { name: "Moonbeam 1.2", price: 2000 },
+                { name: "Walton 1.2", price: 2200 },
+                { name: "Perennial 1.2", price: 2800 },
+                { name: "Moonbeam 1.4", price: 2700 },
+                { name: "Walton 1.4", price: 2800 },
+                { name: "Manana 1.2", price: 3100 },
+                { name: "Perennial 1.4", price: 3800 },
+                { name: "Moonbeam 1.6", price: 3800 },
+                { name: "Walton 1.6", price: 3800 },
+                { name: "Perennial 1.6", price: 4500 },
+                { name: "Manana 1.6", price: 4900 },
+                { name: "Moonbeam Streamline 1.6", price: 5100 },
+                { name: "Manana Hatchback 1.6", price: 5600 },
+                { name: "Walton ND 1.6", price: 8000 },
+                
+                // Cygan drogi
+                { name: "VAIR 1.4", price: 18500 },
+                { name: "Glendale 1.6", price: 20000 },
+                { name: "Clover 1.4", price: 20500 },
+                { name: "Greenwood 1.6", price: 20500 },
+                { name: "Stanier 1.4", price: 21500 },
+                { name: "Premier 1.2", price: 23500 },
+                { name: "Emperor 1.6", price: 23500 },
+                { name: "Stallion 1.4", price: 26000 },
+                { name: "Mesa 1.4", price: 27500 },
+                { name: "Washington 1.4", price: 28000 },
+                { name: "Club 1.4", price: 29500 },
+                { name: "Oceanic 1.6", price: 30000 },
+                { name: "Admiral 1.4", price: 31000 },
+                { name: "Intruder 1.6", price: 31500 },
+                { name: "Nebula 1.6", price: 32000 },
+                { name: "Euros 1.4", price: 33000 },
+                { name: "Fortune 1.2", price: 33500 },
+                { name: "Blista Compact 1.6", price: 34000 },
+                { name: "Tahoma 1.4", price: 35000 },
+                { name: "Merit Victory 1.4", price: 37000 },
+                { name: "Rancher 1.4", price: 37500 },
+                { name: "Sabre 1.4", price: 38000 },
+                { name: "Admiral 1.6", price: 40000 },
+                { name: "Premier 1.4", price: 41000 },
+                { name: "Sanchez 1.4", price: 45500 },
+                { name: "Phoenix 1.4", price: 46000 },
+                { name: "Stratum Wagon 1.6", price: 48000 },
+                { name: "Buffalo 1.2", price: 50000 },
+                
+                // Klasa niska
+                { name: "Bobcat", price: 15000, valuationPrice: 11000 },
+                { name: "Manana", price: 15000 },
+                { name: "Moonbeam", price: 15000 },
+                { name: "Perennial", price: 15000 },
+                { name: "Walton", price: 15000 },
+                { name: "Virgo", price: 20000 },
+                { name: "Bravura", price: 20000, valuationPrice: 16200 },
+                { name: "Esperanto", price: 20000 },
+                { name: "Glendale", price: 20000 },
+                { name: "Emperor", price: 25000 },
+                { name: "Sadler", price: 25000 },
+                { name: "Solair", price: 25000 },
+                { name: "Tampa", price: 25000 },
+                { name: "Willard", price: 25000 },
+                { name: "Greenwood", price: 25000 },
+                { name: "Vincent", price: 25000 },
+                { name: "Quadbike", price: 28000 },
+                { name: "VAIR", price: 30000 },
+                { name: "Previon", price: 30000 },
+                { name: "Cadrona", price: 30000 },
+                { name: "Primo", price: 30000 },
+                { name: "Nebula", price: 30000 },
+                { name: "Cabbie", price: 30000 },
+                { name: "Vincent Combi", price: 30000 },
+                { name: "Sunrise", price: 32000 },
+                { name: "Foxtrotter", price: 33000 },
+                { name: "Oceanic", price: 34000 },
+                { name: "Regina", price: 35000 },
+                { name: "Intruder", price: 35000 },
+                { name: "Journey", price: 35000 },
+                { name: "Nebula Combi", price: 35000 },
+                { name: "Blista Compact", price: 37000 },
+                { name: "Mesa", price: 40000 },
+                { name: "Sunrise Combi", price: 40000 },
+                { name: "Majestic", price: 40000 },
+                { name: "Clover", price: 40000 },
+                { name: "Stanier", price: 40000 },
+                { name: "Stallion", price: 40000 },
+                { name: "Landstalker", price: 40000 },
+                { name: "Weevil", price: 41000 },
+                { name: "Washington", price: 45000 },
+                { name: "Club", price: 45000 },
+                { name: "Admiral", price: 45000 },
+                { name: "Tahoma", price: 45000 },
+                { name: "Picador", price: 14500, valuationPrice: 14500 },
+                
+                // Klasa średnia
+                { name: "Buccaneer", price: 50000 },
+                { name: "Stallion Fastback", price: 50000 },
+                { name: "Euros", price: 55000 },
+                { name: "Stratum Wagon", price: 55000 },
+                { name: "Fortune", price: 60000 },
+                { name: "Rancher", price: 60000 },
+                { name: "Stratum Sedan", price: 60000 },
+                { name: "Premier", price: 65000 },
+                { name: "Uranus", price: 70000 },
+                { name: "Sabre", price: 70000 },
+                { name: "Alpha", price: 70000 },
+                { name: "Solace", price: 72000 },
+                { name: "Premier Wagon", price: 75000 },
+                { name: "Merit Victory", price: 75000 },
+                { name: "Feltzer", price: 80000 },
+                { name: "Burrito", price: 100000 },
+                { name: "Flash", price: 90000 },
+                { name: "Atlanta", price: 95000 },
+                { name: "Schafter", price: 100000 },
+                { name: "Tornado", price: 100000 },
+                { name: "Yosemite", price: 110000 },
+                { name: "Phoenix", price: 110000 },
+                { name: "Windsor", price: 130000 },
+                { name: "Sentinel", price: 140000 },
+                { name: "Sentinel Wagon", price: 150000 },
+                
+                // Klasa wysoka
+                { name: "Buffalo", price: 160000 },
+                { name: "BF Injection", price: 165000 },
+                { name: "Slamvan", price: 165000 },
+                { name: "Sentinel Classic", price: 170000 },
+                { name: "Itoku", price: 170000 },
+                { name: "Jester", price: 180000 },
+                { name: "ZR-350", price: 190000 },
+                { name: "Super GT", price: 190000 },
+                { name: "Huntley", price: 200000 },
+                { name: "Blade", price: 200000 },
+                { name: "Zion", price: 210000 },
+                { name: "ZR-250", price: 220000 },
+                { name: "Sandking", price: 220000 },
+                { name: "Savanna", price: 240000 },
+                { name: "Sultan Wagon", price: 240000 },
+                { name: "Sultan Sedan", price: 250000 },
+                { name: "Bandito", price: 300000 },
+                { name: "Comet", price: 300000 },
+                { name: "Elegy", price: 330000 },
+                { name: "Deluxo", price: 330000 },
+                { name: "Coquette Classic", price: 350000 },
+                
+                // Klasa DSD/STD
+                { name: "Vincent STD", price: 70000 },
+                { name: "Stainer STD", price: 80000 },
+                { name: "Stallion DSD", price: 150000 },
+                { name: "Sentinel STD", price: 155000 },
+                { name: "Jester DSD", price: 220000 },
+                { name: "Admiral DSD", price: 240000 },
+                { name: "Zion Coupe STD", price: 240000 },
+                { name: "Feltzer Coupe DSD", price: 250000 },
+                { name: "Buffalo DSD", price: 260000 },
+                { name: "ZR-250 DSD-R", price: 750000 },
+                { name: "Schafter DSD-R", price: 1000000 },
+                
+                // Klasa premium
+                { name: "Banshee", price: 400000 },
+                { name: "Elegant", price: 400000 },
+                { name: "Cheetah", price: 475000 },
+                { name: "Stretch", price: 550000 },
+                { name: "Bullet", price: 600000 },
+                { name: "Mamba", price: 650000 },
+                { name: "Itoku Luxury", price: 800000 },
+                { name: "Broadway", price: 850000 },
+                { name: "Patriot", price: 950000 },
+                { name: "Hotknife", price: 900000 },
+                { name: "Yosemite Long", price: 1200000 },
+                { name: "Hermes", price: 1500000 },
+                { name: "Camper", price: 1500000 },
+                { name: "Remington", price: 1600000 },
+                { name: "Stinger", price: 1700000 },
+                { name: "Hustler", price: 2000000 },
+                { name: "Rancher Long", price: 2200000 },
+                { name: "Voodoo", price: 2500000 },
+                { name: "Turismo", price: 2500000 },
+                { name: "Infernus", price: 3000000 },
+                { name: "Stafford", price: 4000000 },
+                { name: "Infernus Classic", price: 99999999 }
+            ],
+            motorcycle: [
+                { name: "Faggio", price: 20000 },
+                { name: "BF-400", price: 50000 },
+                { name: "PCJ-600", price: 60000 },
+                { name: "Freeway", price: 70000 },
+                { name: "Wayfarer", price: 75000 },
+                { name: "Sanchez", price: 100000 },
+                { name: "FCR-900", price: 120000 },
+                { name: "NRG-500", price: 1300000 }
+            ],
+            plane: [
+                { name: "Sparrow", price: 230000 },
+                { name: "Seasparrow", price: 275000 },
+                { name: "Skimmer", price: 300000 },
+                { name: "News Chopper", price: 320000 },
+                { name: "Maverick", price: 500000 },
+                { name: "Dodo", price: 350000 },
+                { name: "Stuntplane", price: 460000 },
+                { name: "Beagle", price: 700000 },
+                { name: "Shamal", price: 650000 },
+                { name: "Nevada", price: 50000 },
+            ],
+            boat: [
+            { name: "Ponton (Dinghy)", price: 50000 },
+                { name: "Reefer", price: 54000 },
+                { name: "Speeder", price: 90000 },
+                { name: "Jetmax", price: 108000 },
+                { name: "Squalo", price: 190000 },
+                { name: "Topic", price: 240000 },
+                { name: "Marquis", price: 330000 },
+                { name: "Launch", price: 400000 }
+            ]
+        };
+        const felgi = [
+        { id: 1025, name: "Off-Road", price: 2250, demontaz: 2225 },
+        { id: 1073, name: "Shadow", price: 2750, demontaz: 2725 },
+        { id: 1074, name: "Mega", price: 3375, demontaz: 3350 },
+        { id: 1075, name: "Rimshine", price: 2375, demontaz: 2350 },
+        { id: 1076, name: "Wires", price: 3750, demontaz: 3725 },
+        { id: 1077, name: "Classic", price: 3000, demontaz: 2975 },
+        { id: 1078, name: "Twist", price: 2750, demontaz: 2725 },
+        { id: 1079, name: "Cutter", price: 3000, demontaz: 2975 },
+        { id: 1080, name: "Switch", price: 2750, demontaz: 2725 },
+        { id: 1081, name: "Grove", price: 2750, demontaz: 2725 },
+        { id: 1082, name: "Import", price: 3000, demontaz: 2975 },
+        { id: 1083, name: "Dollar", price: 1000, demontaz: 975 },
+        { id: 1084, name: "Trance", price: 2750, demontaz: 2725 },
+        { id: 1085, name: "Atomic", price: 3000, demontaz: 2975 },
+        { id: 1096, name: "Ahab", price: 3000, demontaz: 2975 },
+        { id: 1097, name: "Virtual", price: 2750, demontaz: 2725 },
+        { id: 1098, name: "Access", price: 3000, demontaz: 2975 }
+];
+
+        
+        // Obsługa zmiany typu obliczeń
+        document.getElementById('calculationType').addEventListener('change', function() {
+            const tunerSection = document.getElementById('tunerSection');
+            tunerSection.style.display = this.value === 'purchase' ? 'block' : 'none';
+        });
+
+        // Obsługa zmiany typu pojazdu
+        document.getElementById('vehicleType').addEventListener('change', function() {
+            const vehicleSection = document.getElementById('vehicleSection');
+            const vehicleModelSelect = document.getElementById('vehicleModel');
+            const sortType = document.querySelector('input[name="sortType"]:checked')?.value || 'alphabetical';
+
+            vehicleModelSelect.innerHTML = '';
+
+            if (this.value) {
+                vehicleSection.style.display = 'block';
+                let sortedVehicles = [...vehicles[this.value]];
+
+                if (sortType === 'price') {
+                    sortedVehicles.sort((a, b) => a.price - b.price);
+                } else {
+                    sortedVehicles.sort((a, b) => a.name.localeCompare(b.name));
+                }
+
+                sortedVehicles.forEach(vehicle => {
+                    const option = document.createElement('option');
+                    option.value = vehicle.name;
+                    option.textContent = `${vehicle.name} (${vehicle.price} PLN)`;
+                    vehicleModelSelect.appendChild(option);
+                });
+            } else {
+                vehicleSection.style.display = 'none';
+            }
+        });
+        
+
+        // Obsługa przycisku oblicz
+        document.getElementById('calculateBtn').addEventListener('click', function() {
+            const calculationType = document.getElementById('calculationType').value;
+            const vehicleType = document.getElementById('vehicleType').value;
+            const vehicleModel = document.getElementById('vehicleModel').value;
+            const resultDiv = document.getElementById('result');
+            
+            if (!vehicleType || !vehicleModel) {
+            alert('Proszę wybrać typ i model pojazdu');
+            return;
+            }
+            
+            const selectedVehicle = vehicles[vehicleType].find(v => v.name === vehicleModel);
+            
+            if (!selectedVehicle) {
+            alert('Wybrany pojazd nie został znaleziony');
+            return;
+            }
+            
+            let price = selectedVehicle.price;
+            let details = '';
+            
+            switch (calculationType) {
+            case 'purchase':
+                const tunerFee = parseFloat(document.getElementById('tunerFee').value) || 0;
+                price = selectedVehicle.price * (1 + tunerFee/100);
+                details = `Cena zakupu: ${selectedVehicle.price} PLN<br>`;
+                if (tunerFee > 0) {
+                details += `Doliczka tunera (${tunerFee}%): ${selectedVehicle.price * tunerFee/100} PLN<br>`;
+                }
+                break;
+                
+            case 'valuation':
+                details = `Cena wyceny: ${price} PLN<br>`;
+                break;
+                
+            case 'dismantling':
+                details = `Cena demontażu: ${price} PLN<br>`;
+                break;
+            }
+            
+            resultDiv.innerHTML = `
+            <h3>Wynik obliczeń</h3>
+            <p><strong>Model:</strong> ${vehicleModel}</p>
+            <p><strong>Typ obliczeń:</strong> ${getCalculationTypeName(calculationType)}</p>
+            <p>${details}</p>
+            <p><strong>Całkowita kwota:</strong> ${price.toFixed(2)} PLN</p>
+            `;
+            resultDiv.style.display = 'block';
+        });
+        
+        function getCalculationTypeName(type) {
+            const types = {
+            'purchase': 'Zakup',
+            'valuation': 'Wycena',
+            'dismantling': 'Demontaż'
+            };
+            return types[type] || '';
+        }
+    </script>
 </body>
 </html>

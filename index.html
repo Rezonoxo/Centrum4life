@@ -13,6 +13,24 @@
         <a href="tuning.html" class="calc-button">Kalkulator Tuningu (BETA)</a>
         <a href="kalkulator_wegla.html" class="calc-button">Kalkulator Węgla</a>
     </div>
+    <div class="search-container"></div>
+        <h2>Wyszukiwarka profili MTA4Life</h2>
+        <form id="searchForm" action="https://mta4life.pl/search/" method="get" target="_blank">
+            <input type="text" id="searchInput" name="q" placeholder="Wpisz nazwę użytkownika">
+            <input type="hidden" name="quick" value="1">
+            <input type="hidden" name="type" value="core_members">
+            <button type="submit">Szukaj</button>
+        </form>
+        
+        <h2>Wyszukiwarka ID Pojazdu</h2>
+        <form id="vehicleSearchForm" action="https://mta4life.pl/vehicles/" method="get" target="_blank">
+            <input type="text" id="vehicleIdInput" name="s" placeholder="Wpisz ID pojazdu">
+            <input type="hidden" name="so" value="0">
+            <input type="hidden" name="so_t" value="0">
+            <input type="hidden" name="s_t" value="0">
+            <button type="submit">Szukaj</button>
+        </form>
+    </div>
     <footer>
         <footer>
             Strona stworzona przez<a href="https://mta4life.pl/profile/85807-nozer/"> Nozer</a>'a

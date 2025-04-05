@@ -1,67 +1,64 @@
+/* General styles */
 body {
-    font-family: Arial, sans-serif;
-    max-width: 570px;
-    margin: 30px auto;
-    padding: 20px;
-    background: #1a1a1a;
-    color: #0099ff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.3);
-    transition: background 0.3s ease;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #0099ff;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
+/* Button container */
 .button-container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
+    gap: 1.5rem;
+    align-items: center;
 }
 
+/* Glassmorphism button styles */
 .calc-button {
-    padding: 12px;
-    width: 100%;
-    background-color: #0099ff;
-    border: none;
-    color: #1a1a1a;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    text-align: center;
     text-decoration: none;
-    display: block;
+    font-size: 1.2rem;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .calc-button:hover {
-    background-color: #00bfff;
-    transform: scale(1.02);  
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
-.calc-button:active {
-    background-color: #0077cc;
-    transform: scale(1);
-}
-
+/* Footer styles */
 footer {
+    margin-top: 2rem;
     text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-    color: #d1d1d1;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 footer a {
-    color: #0099ff;
+    color: #ffcc00;
     text-decoration: none;
 }
 
 footer a:hover {
-    color: #00bfff;
-    animation: pulse 1s infinite alternate;
+    text-decoration: underline;
 }
