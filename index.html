@@ -3,50 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulatory 4Life</title>
+    <title>Kalkulatory 4Life | MTA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Kalkulatory 4Life</h1>
-    <div class="button-container">
-        <a href="kalkulator_pp.html" class="calc-button">Kalkulator PP</a>
-        <a href="tuning.html" class="calc-button">Kalkulator Tuningu (BETA)</a>
-        <a href="kalkulator_wegla.html" class="calc-button">Kalkulator Węgla</a>
-    </div>
-    <div class="search-container"></div>
-        <h2>Wyszukiwarka profili MTA4Life</h2>
-        <form id="searchForm" action="https://mta4life.pl/search/" method="get" target="_blank">
-            <input type="text" id="searchInput" name="q" placeholder="Wpisz nazwę użytkownika">
-            <input type="hidden" name="quick" value="1">
-            <input type="hidden" name="type" value="core_members">
-            <button type="submit">Szukaj</button>
-        </form>
-        
-        <h2>Wyszukiwarka ID Pojazdu</h2>
-        <form id="vehicleSearchForm" action="https://mta4life.pl/vehicles/" method="get" target="_blank">
-            <input type="text" id="vehicleIdInput" name="s" placeholder="Wpisz ID pojazdu">
-            <input type="hidden" name="so" value="0">
-            <input type="hidden" name="so_t" value="0">
-            <input type="hidden" name="s_t" value="0">
-            <button type="submit">Szukaj</button>
-        </form>
-    </div>
-    <footer>
-        <footer>
-            Strona stworzona przez<a href="https://mta4life.pl/profile/85807-nozer/"> Nozer</a>'a
-            <p>Wszelkie prawa zastrzeżone</p>
-          </footer>
-    </footer>
-</body>
-<script>
-    // function checkPassword() {
-    //     let password = prompt("Podaj kod dostępu:");
-    //     if (password !== "rezon") {
-    //         alert("Niepoprawny kod! Dostęp zabroniony.");
-    //         window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-    //     }
-    // }
-    // window.onload = checkPassword;
-</script>
+    <video id="bg-video" autoplay muted loop>
+        <source src="tlo.mp4" type="video/mp4">
+        Twoja przeglądarka nie obsługuje elementu wideo.
+    </video>
+    <nav>
+        <a href="kalkulator_pp.html" class="calc-button" data-transition>
+            <i class="fas fa-calculator"></i> Kalkulator PP
+        </a>
+        <a href="tuning.html" class="calc-button" data-transition>
+            <i class="fas fa-car"></i> Kalkulator Tuningu
+        </a>
+        <a href="kalkulator_wegla.html" class="calc-button" data-transition>
+            <i class="fas fa-fire"></i> Kalkulator Węgla
+        </a>
+    </nav>
 
+    <main>
+        <div class="container">
+            <section class="hero">
+                <h1 class="glow">Kalkulatory <span class="pulse">4Life</span></h1>
+                <p>Komplet narzędzi dla graczy MTA, ułatwiających zarządzanie postępem w grze i obliczenia związane z rozgrywką</p>
+            </section>
+
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h2><i class="fas fa-search"></i> Wyszukiwarka Profili</h2>
+                    <form id="searchForm" action="https://mta4life.pl/search/" method="get" target="_blank">
+                        <div class="input-group">
+                            <input type="text" id="searchInput" name="q" placeholder="Wpisz nazwę użytkownika" required>
+                        </div>
+                        <input type="hidden" name="quick" value="1">
+                        <input type="hidden" name="type" value="core_members">
+                        <button type="submit">
+                            <i class="fas fa-search"></i> Szukaj
+                        </button>
+                    </form>
+                </div>
+
+                <div class="tool-card">
+                    <h2><i class="fas fa-car-side"></i> Wyszukiwarka Pojazdów</h2>
+                    <form id="vehicleSearchForm" action="https://mta4life.pl/vehicles/" method="get" target="_blank">
+                        <div class="input-group">
+                            <input type="text" id="vehicleIdInput" name="s" placeholder="Wpisz ID pojazdu" required>
+                        </div>
+                        <input type="hidden" name="so" value="0">
+                        <input type="hidden" name="so_t" value="0">
+                        <input type="hidden" name="s_t" value="0">
+                        <button type="submit">
+                            <i class="fas fa-search"></i> Szukaj
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Przycisk "Do góry" -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    <section class="info-zone">
+        <div class="container">
+            <h2><i class="fas fa-info-circle"></i> Strefa Informacyjna</h2>
+            <div class="info-cards">
+                <div class="info-card">
+                    <h3>📢 Nowość: Kalkulator Węgla</h3>
+                    <p>Dodaliśmy nowy kalkulator ułatwiający liczenie zysków z węgla. Sprawdź zakładkę <strong>„Kalkulator Węgla”</strong>.</p>
+                </div>
+                <div class="info-card">
+                    <h3>💡 Porada</h3>
+                    <p>Pamiętaj, że możesz zmieniać motyw strony – kliknij <i class="fas fa-moon"></i> w prawym górnym rogu!</p>
+                </div>
+                <div class="info-card">
+                    <h3>🛠️ Wersja beta</h3>
+                    <p>Strona w rozwoju. Pomysły? Discord: rezonoxo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>Strona stworzona przez <a href="https://mta4life.pl/profile/85807-nozer/" target="_blank">Nozera</a></p>
+            <p>Na podstawie serwera MTA 4Life | Wszelkie prawa zastrzeżone &copy; <span id="year"></span></p>
+        </div>
+    </footer>
+
+    <script>
+        // Aktualizacja roku w stopce
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Dark/Light Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // Sprawdź zapisany theme z localStorage
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        body.setAttribute('data-theme', currentTheme);
+        
+        // Ustaw odpowiednią ikonę
+        if (currentTheme === 'light') {
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+        
+        // Przycisk "Do góry"
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Animowane przejścia między stronami
+        document.querySelectorAll('[data-transition]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.href && !link.target) {
+                    e.preventDefault();
+                    body.classList.add('page-transition');
+                    
+                    setTimeout(() => {
+                        window.location.href = link.href;
+                    }, 500);
+                }
+            });
+        });
+        
+        // Parallax dla tła
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.pageYOffset;
+            const video = document.getElementById('bg-video');
+            video.style.transform = `translate(-50%, -50%) translateY(${scrollPosition * 0.3}px)`;
+        });
+        
+        // Efekt ładowania strony
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
 </html>

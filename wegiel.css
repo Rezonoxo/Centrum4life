@@ -1,142 +1,314 @@
-/* filepath: c:\Users\wikto\Documents\GitHub\kalkulator_pp\wegiel.css */
-body {
-    font-family: Arial, sans-serif;
-    max-width: 570px;
-    margin: 30px auto;
+:root {
+    --primary: #00aaff;
+    --primary-dark: #0088cc;
+    --secondary: #00ccff;
+    --dark: #0a0e17;
+    --darker: #05090f;
+    --light: #f0f8ff;
+    --gray: #8a8a8a;
+    --overlay: rgba(5, 9, 15, 0.85);
+    --bg-video-filter: brightness(0.4) contrast(1.2);
+    --card-bg: rgba(10, 14, 23, 0.7);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    color: var(--light);
+    background: var(--dark);
+    line-height: 1.6;
+    transition: background 0.5s ease, color 0.3s ease;
+}
+
+#bg-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    filter: var(--bg-video-filter);
+    transition: filter 0.5s ease;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
-    background: #2b2b2b;
-    color: #f1f1f1;
-    border-radius: 8px;
-    box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.3);
-    transition: background 0.3s ease;
+}
+
+/* Nawigacja */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(10, 14, 23, 0.9);
+    backdrop-filter: blur(15px) saturate(180%);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(0, 170, 255, 0.1);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--light);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.nav-brand i {
+    color: var(--primary);
+}
+
+.back-button {
+    background: rgba(0, 170, 255, 0.15);
+    color: var(--light);
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 170, 255, 0.2);
+}
+
+.back-button:hover {
+    background: rgba(0, 170, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Główna zawartość */
+main {
+    padding-top: 90px;
+    min-height: 100vh;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 h1 {
-    text-align: center;
     font-size: 2.5rem;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+}
+
+/* Karta kalkulatora */
+.calculator-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 170, 255, 0.1);
+    margin-bottom: 30px;
+}
+
+.form-group {
     margin-bottom: 20px;
-    color: #e0e0e0;
 }
 
 label {
     display: block;
-    margin-top: 15px;
-    color: #d0d0d0;
+    margin-bottom: 8px;
+    color: var(--secondary);
+    font-weight: 500;
+}
+
+select, input[type="number"], input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 170, 255, 0.3);
+    background-color: rgba(0, 0, 0, 0.3);
+    color: var(--light);
     font-size: 1rem;
+    transition: all 0.3s ease;
+    appearance: none; /* Removes default styling */
+    -moz-appearance: textfield; /* Removes arrows in Firefox */
 }
 
-input, select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    box-sizing: border-box;
-    border-radius: 4px;
-    background-color: #3b3b3b;
-    color: #f1f1f1;
-    border: 1px solid #555555;
-    transition: background-color 0.3s ease;
-}
-
-input:focus, select:focus {
-    background-color: #4b4b4b;
-    border-color: #777777;
+select:focus, input:focus {
     outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(0, 170, 255, 0.2);
 }
 
-button {
-    margin-top: 20px;
-    padding: 12px;
-    width: 100%;
-    background-color: #5a9bd6;
+.price-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.price-btn {
+    padding: 10px;
     border: none;
-    color: #ffffff;
-    font-size: 16px;
+    background: rgba(0, 170, 255, 0.15);
+    color: var(--light);
+    border-radius: 6px;
     cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 170, 255, 0.2);
 }
 
-button:hover {
-    background-color: #4a8bc2;
-    transform: scale(1.02);
+.price-btn:hover {
+    background: rgba(0, 170, 255, 0.3);
+    transform: translateY(-2px);
 }
 
-button:active {
-    background-color: #3a7bb0;
-    transform: scale(1);
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
 }
 
+.checkbox-group input {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.calculate-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--darker);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.calculate-btn:hover {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 170, 255, 0.3);
+}
+
+/* Wyniki */
 .result {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 20px;
     margin-top: 20px;
-    padding: 15px;
-    background: #3b3b3b;
-    color: #f1f1f1;
-    border-radius: 4px;
-    border: 1px solid #555555;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 170, 255, 0.1);
+    display: none;
 }
 
+.result h2 {
+    color: var(--secondary);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed rgba(0, 170, 255, 0.2);
+}
+
+.result-item:last-child {
+    border-bottom: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--primary);
+}
+
+/* Stopka */
 footer {
     text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-    color: #d0d0d0;
+    padding: 20px;
+    color: var(--gray);
+    font-size: 0.9rem;
 }
 
 footer a {
-    color: #5a9bd6;
+    color: var(--secondary);
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 footer a:hover {
-    color: #4a8bc2;
-    animation: pulse 1s infinite alternate;
+    color: var(--primary);
 }
 
-@keyframes pulse {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0.8;
-    }
-}
-
-small {
-    font-size: 12px;
-    color: #777777;
-}
-
-@media (max-width: 600px) {
-    body {
-        max-width: 100%;
-        padding: 15px;
-    }
+/* Responsywność */
+@media (max-width: 768px) {
     h1 {
         font-size: 2rem;
     }
+    
+    .calculator-card {
+        padding: 20px;
+    }
+    
+    .price-buttons {
+        grid-template-columns: 1fr;
+    }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
     h1 {
         font-size: 1.8rem;
     }
-    button {
-        font-size: 14px;
+    
+    nav {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
     }
-    label, input, select {
-        font-size: 0.9rem;
+    
+    .back-button {
+        width: 100%;
+        justify-content: center;
     }
 }
 
-@media (max-width: 300px) {
-    h1 {
-        font-size: 1.5rem;
-    }
-    button {
-        font-size: 12px;
-    }
-    label, input, select {
-        font-size: 0.8rem;
-    }
+select {
+    background-color: rgba(10, 14, 23, 0.9);
+    color: var(--light);
+    border: 1px solid rgba(0, 170, 255, 0.3);
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+select:hover {
+    background-color: rgba(10, 14, 23, 1);
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(0, 170, 255, 0.2);
 }

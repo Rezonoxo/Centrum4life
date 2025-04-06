@@ -1,95 +1,174 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <title>Kalkulator Węgla 4Life</title>
-    <link rel="stylesheet" href="wegiel.css">
+    <title>Kalkulator Węgla 4Life | MTA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        button.price-btn {
-            margin: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
-            display: inline-block;
-            width: calc(33.33% - 20px);
-            text-align: center;
-            box-sizing: border-box;
-        }
-        div {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: space-between;
-            overflow: hidden;
-        }
-        #checkbox-label {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-        }
-        .checkbox-label input[type="checkbox"] {
-            margin-right: 10px;
-        }
-        h1 {
-            font-size: 1.9em;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="wegiel.css">
 </head>
 <body>
-    <a href="index.html" style="text-decoration: none;">
-        <button style="margin: 10px; padding: 10px 20px; cursor: pointer;">Strona Główna</button>
-    </a>
-    <h1>🪨Kalkulator zarobku z węgla 🪨</h1>
+    <nav>
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Strona Główna
+        </a>
+        <a href="#" class="nav-brand">
+            <i class="fas fa-fire"></i> Kalkulator Węgla
+        </a>
+    </nav>
 
-    <label for="mode">Wybierz sposób wprowadzenia ilości węgla:</label>
-    <select id="mode" onchange="toggleCoalInput()">
-        <option value="manual">Ręczne wprowadzenie</option>
-        <option value="auto">Automatyczne obliczenie (czas + poziom)</option>
-    </select>
+    <main>
+        <div class="container">
+            <section class="hero">
+                <h1>🪨 Kalkulator Zarobku z Węgla 🪨</h1>
+            </section>
 
-    <div id="manualInput">
-        <label for="coalKg">Ilość węgla (kg):</label>
-        <input type="number" id="coalKg" placeholder="Np. 150" step="any">
-    </div>
+            <div class="calculator-card">
+                <div class="form-group">
+                    <label for="mode">Tryb wprowadzania ilości węgla:</label>
+                    <select id="mode" onchange="toggleCoalInput()">
+                        <option value="manual">Ręczne wprowadzenie</option>
+                        <option value="auto">Automatyczne obliczenie (czas + poziom)</option>
+                    </select>
+                </div>
 
-    <div id="autoInput" style="display: none;">
-        <label for="rank">Poziom górnika:</label>
-        <select id="rank">
-            <option value="1">Poziom 1 (50kg/8min)</option>
-            <option value="2">Poziom 2 (60kg/8min)</option>
-            <option value="3">Poziom 3 (75kg/9min)</option>
-        </select>
+                <div id="manualInput" class="form-group">
+                    <label for="coalKg">Ilość węgla (kg):</label>
+                    <input type="number" id="coalKg" placeholder="Np. 150" step="any">
+                </div>
 
-        <label for="time">Czas zbierania (w minutach):</label>
-        <input type="number" id="time" placeholder="Np. 30" step="1">
-    </div>
+                <div id="autoInput" class="form-group" style="display: none;">
+                    <label for="rank">Poziom górnika:</label>
+                    <select id="rank">
+                        <option value="1">Poziom 1 (50kg/8min)</option>
+                        <option value="2">Poziom 2 (60kg/8min)</option>
+                        <option value="3">Poziom 3 (75kg/9min)</option>
+                    </select>
 
-    <label for="calculationMode">Wybierz tryb obliczeń:</label>
-    <select id="calculationMode">
-        <option value="exact">Dokładny</option>
-        <option value="margin">Z marginesem błędu (-10%)</option>
-    </select>
+                    <label for="time">Czas zbierania (minuty):</label>
+                    <input type="number" id="time" placeholder="Np. 30" step="1">
+                </div>
 
-    <label for="price">Cena za kg:</label>
-    <input type="number" id="price" placeholder="Np. 11.5" step="any">
-    <div>
-        <button class="price-btn" onclick="setPrice(10)">10 PLN/kg</button>
-        <button class="price-btn" onclick="setPrice(11)">11 PLN/kg</button>
-        <button class="price-btn" onclick="setPrice(11.5)">11.5 PLN/kg</button>
-    </div>
+                <div class="form-group">
+                    <label for="calculationMode">Tryb obliczeń:</label>
+                    <select id="calculationMode">
+                        <option value="exact">Dokładny</option>
+                        <option value="margin">Z marginesem błędu (-10%)</option>
+                    </select>
+                </div>
 
-    <label class="checkbox-label">
-        <input type="checkbox" id="deductDeposit" style="width: 20px; height: 20px; cursor: pointer;">
-        <span>Odejmij koszt kaucji za wywóz (1000 PLN)</span>
-    </label>
+                <div class="form-group">
+                    <label for="price">Cena za kg (PLN):</label>
+                    <input type="number" id="price" placeholder="Np. 11.5" step="any">
+                    
+                    <div class="price-buttons">
+                        <button class="price-btn" onclick="setPrice(10)">10 PLN/kg</button>
+                        <button class="price-btn" onclick="setPrice(11)">11 PLN/kg</button>
+                        <button class="price-btn" onclick="setPrice(11.5)">11.5 PLN/kg</button>
+                    </div>
+                </div>
 
-    <button onclick="calculateCoal()">Oblicz zarobek 💰</button>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="deductDeposit">
+                    <label for="deductDeposit">Odejmij koszt kaucji za wywóz (1000 PLN)</label>
+                </div>
 
-    <div id="result" class="result"></div>
+                <button class="calculate-btn" onclick="calculateCoal()">
+                    <i class="fas fa-calculator"></i> Oblicz zarobek
+                </button>
+
+                <div id="result" class="result">
+                    <h2><i class="fas fa-coins"></i> Wynik</h2>
+                    <div class="result-item">
+                        <span>Ilość węgla:</span>
+                        <span id="result-coal">0 kg</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Wartość węgla:</span>
+                        <span id="result-value">0 PLN</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Koszt kaucji:</span>
+                        <span id="result-deposit">-1000 PLN</span>
+                    </div>
+                    <div class="result-item">
+                        <span>ZAROBEK NETTO:</span>
+                        <span id="result-total">0 PLN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
     <footer>
-        Stworzone przez <a href="https://mta4life.pl/profile/85807-nozer/">Nozer</a>'a
+        Stworzone przez <a href="https://mta4life.pl/profile/85807-nozer/">Nozer'a</a> | MTA 4Life &copy; <span id="year"></span>
     </footer>
 
-    <script src="wegiel.js"></script>
+    <script>
+        // Aktualizacja roku
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Funkcje kalkulatora
+        function toggleCoalInput() {
+            const mode = document.getElementById('mode').value;
+            document.getElementById('manualInput').style.display = mode === 'manual' ? 'block' : 'none';
+            document.getElementById('autoInput').style.display = mode === 'auto' ? 'block' : 'none';
+        }
+
+        function setPrice(price) {
+            document.getElementById('price').value = price;
+        }
+
+        function calculateCoal() {
+            const mode = document.getElementById('mode').value;
+            let coalKg = 0;
+            
+            if (mode === 'manual') {
+                coalKg = parseFloat(document.getElementById('coalKg').value) || 0;
+            } else {
+                const rank = parseInt(document.getElementById('rank').value);
+                const time = parseInt(document.getElementById('time').value) || 0;
+                
+                // Obliczenia na podstawie poziomu i czasu
+                if (rank === 1) coalKg = (50 / 8) * time;
+                else if (rank === 2) coalKg = (60 / 8) * time;
+                else if (rank === 3) coalKg = (75 / 9) * time;
+            }
+            
+            const price = parseFloat(document.getElementById('price').value) || 0;
+            const calculationMode = document.getElementById('calculationMode').value;
+            const deductDeposit = document.getElementById('deductDeposit').checked;
+            
+            // Obliczenia
+            let coalValue = coalKg * price;
+            
+            if (calculationMode === 'margin') {
+                coalValue *= 0.9; // -10%
+            }
+            
+            let total = coalValue;
+            let depositCost = 0;
+            if (deductDeposit) {
+                depositCost = 1000;
+                total -= depositCost;
+            }
+            document.getElementById('result-deposit').textContent = `-${depositCost.toFixed(2)} PLN`;
+            
+            // Wyświetlanie wyników
+            document.getElementById('result-coal').textContent = coalKg.toFixed(2) + ' kg';
+            document.getElementById('result-value').textContent = coalValue.toFixed(2) + ' PLN';
+            document.getElementById('result-total').textContent = total.toFixed(2) + ' PLN';
+            document.getElementById('result').style.display = 'block';
+            
+            // Podświetlenie wyniku
+            const resultTotal = document.getElementById('result-total');
+            resultTotal.style.color = total >= 0 ? '#00ff88' : '#ff5555';
+            resultTotal.style.fontWeight = 'bold';
+        }
+
+        // Dark/Light Mode (jeśli chcesz dodać przycisk)
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
 </body>
 </html>
