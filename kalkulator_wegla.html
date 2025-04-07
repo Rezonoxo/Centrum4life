@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" data-theme="dark">
+<html lang="pl"></html>
 <head>
     <meta charset="UTF-8">
     <title>Kalkulator Węgla 4Life | MTA</title>
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="wegiel.css">
 </head>
-<body>
+<body class="page-transition"></body>
     <nav>
         <a href="index.html" class="back-button">
             <i class="fas fa-arrow-left"></i> Strona Główna
@@ -101,7 +101,7 @@
     </main>
 
     <footer>
-        Stworzone przez <a href="https://mta4life.pl/profile/85807-nozer/">Nozer'a</a> | MTA 4Life &copy; <span id="year"></span>
+        Stworzone przez <a href="https://mta4life.pl/profile/85807-nozer/">Nozer'a</a> | Centrum 4life &copy; <span id="year"></span>
     </footer>
 
     <script>
@@ -122,53 +122,47 @@
         function calculateCoal() {
             const mode = document.getElementById('mode').value;
             let coalKg = 0;
-            
+
             if (mode === 'manual') {
-                coalKg = parseFloat(document.getElementById('coalKg').value) || 0;
+            coalKg = parseFloat(document.getElementById('coalKg').value) || 0;
             } else {
-                const rank = parseInt(document.getElementById('rank').value);
-                const time = parseInt(document.getElementById('time').value) || 0;
-                
-                // Obliczenia na podstawie poziomu i czasu
-                if (rank === 1) coalKg = (50 / 8) * time;
-                else if (rank === 2) coalKg = (60 / 8) * time;
-                else if (rank === 3) coalKg = (75 / 9) * time;
+            const rank = parseInt(document.getElementById('rank').value);
+            const time = parseInt(document.getElementById('time').value) || 0;
+
+            // Obliczenia na podstawie poziomu i czasu
+            const rankRates = { 1: 50 / 8, 2: 60 / 8, 3: 75 / 9 };
+            coalKg = rankRates[rank] * time || 0;
             }
-            
+
             const price = parseFloat(document.getElementById('price').value) || 0;
             const calculationMode = document.getElementById('calculationMode').value;
             const deductDeposit = document.getElementById('deductDeposit').checked;
-            
+
             // Obliczenia
             let coalValue = coalKg * price;
-            
-            if (calculationMode === 'margin') {
-                coalValue *= 0.9; // -10%
-            }
-            
-            let total = coalValue;
-            let depositCost = 0;
-            if (deductDeposit) {
-                depositCost = 1000;
-                total -= depositCost;
-            }
-            document.getElementById('result-deposit').textContent = `-${depositCost.toFixed(2)} PLN`;
-            
+            if (calculationMode === 'margin') coalValue *= 0.9; // -10%
+
+            const depositCost = deductDeposit ? 1000 : 0;
+            const total = coalValue - depositCost;
+
             // Wyświetlanie wyników
-            document.getElementById('result-coal').textContent = coalKg.toFixed(2) + ' kg';
-            document.getElementById('result-value').textContent = coalValue.toFixed(2) + ' PLN';
-            document.getElementById('result-total').textContent = total.toFixed(2) + ' PLN';
+            document.getElementById('result-coal').textContent = `${coalKg.toFixed(2)} kg`;
+            document.getElementById('result-value').textContent = `${coalValue.toFixed(2)} PLN`;
+            document.getElementById('result-deposit').textContent = `-${depositCost.toFixed(2)} PLN`;
+            document.getElementById('result-total').textContent = `${total.toFixed(2)} PLN`;
             document.getElementById('result').style.display = 'block';
-            
+
             // Podświetlenie wyniku
             const resultTotal = document.getElementById('result-total');
             resultTotal.style.color = total >= 0 ? '#00ff88' : '#ff5555';
             resultTotal.style.fontWeight = 'bold';
         }
 
-        // Dark/Light Mode (jeśli chcesz dodać przycisk)
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
+        // Efekt paralaksy
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            hero.style.backgroundPositionY = `${window.scrollY * 0.5}px`;
+        });
     </script>
 </body>
 </html>

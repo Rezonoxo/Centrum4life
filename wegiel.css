@@ -24,6 +24,13 @@ body, html {
     background: var(--dark);
     line-height: 1.6;
     transition: background 0.5s ease, color 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 #bg-video {
@@ -39,10 +46,24 @@ body, html {
     transition: filter 0.5s ease;
 }
 
+body:hover #bg-video {
+    filter: brightness(0.3) contrast(1.1);
+}
+
 .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    animation: slideUpFadeIn 0.8s ease-out forwards 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@keyframes slideUpFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Nawigacja */
@@ -60,6 +81,12 @@ nav {
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid rgba(0, 170, 255, 0.1);
+    animation: slideDown 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.2s;
+    transform: translateY(-100%);
+}
+
+@keyframes slideDown {
+    to { transform: translateY(0); }
 }
 
 .nav-brand {
@@ -69,10 +96,20 @@ nav {
     color: var(--light);
     text-decoration: none;
     font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.nav-brand:hover {
+    text-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
 }
 
 .nav-brand i {
     color: var(--primary);
+    transition: transform 0.3s ease;
+}
+
+.nav-brand:hover i {
+    transform: scale(1.2);
 }
 
 .back-button {
@@ -91,6 +128,7 @@ nav {
 .back-button:hover {
     background: rgba(0, 170, 255, 0.3);
     transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 170, 255, 0.2);
 }
 
 /* Główna zawartość */
@@ -102,6 +140,16 @@ main {
 .hero {
     text-align: center;
     margin-bottom: 30px;
+    animation: scaleIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.4s;
+    transform: scale(0.95);
+    opacity: 0;
+}
+
+@keyframes scaleIn {
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 h1 {
@@ -112,6 +160,12 @@ h1 {
     background-clip: text;
     color: transparent;
     font-weight: 700;
+    text-shadow: 0 0 15px rgba(0, 170, 255, 0.3);
+    transition: text-shadow 0.3s ease;
+}
+
+h1:hover {
+    text-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
 }
 
 /* Karta kalkulatora */
@@ -123,10 +177,31 @@ h1 {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(0, 170, 255, 0.1);
     margin-bottom: 30px;
+    animation: cardAppear 0.8s ease-in forwards 0.6s;
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+@keyframes cardAppear {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.calculator-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 170, 255, 0.3);
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
 }
 
 .form-group {
     margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.form-group:hover {
+    transform: translateX(5px);
 }
 
 label {
@@ -145,14 +220,15 @@ select, input[type="number"], input[type="text"] {
     color: var(--light);
     font-size: 1rem;
     transition: all 0.3s ease;
-    appearance: none; /* Removes default styling */
-    -moz-appearance: textfield; /* Removes arrows in Firefox */
+    appearance: none;
+    -moz-appearance: textfield;
 }
 
 select:focus, input:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 2px rgba(0, 170, 255, 0.2);
+    box-shadow: 0 0 0 2px rgba(0, 170, 255, 0.2),
+                0 0 15px rgba(0, 170, 255, 0.1);
 }
 
 .price-buttons {
@@ -176,12 +252,18 @@ select:focus, input:focus {
 .price-btn:hover {
     background: rgba(0, 170, 255, 0.3);
     transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 170, 255, 0.2);
 }
 
 .checkbox-group {
     display: flex;
     align-items: center;
     margin: 20px 0;
+    transition: transform 0.3s ease;
+}
+
+.checkbox-group:hover {
+    transform: translateX(5px);
 }
 
 .checkbox-group input {
@@ -189,6 +271,7 @@ select:focus, input:focus {
     height: 20px;
     margin-right: 10px;
     cursor: pointer;
+    accent-color: var(--primary);
 }
 
 .calculate-btn {
@@ -203,12 +286,29 @@ select:focus, input:focus {
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.calculate-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
 }
 
 .calculate-btn:hover {
     background: linear-gradient(135deg, var(--primary-dark), var(--primary));
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 170, 255, 0.3);
+}
+
+.calculate-btn:hover::before {
+    left: 100%;
 }
 
 /* Wyniki */
@@ -220,12 +320,14 @@ select:focus, input:focus {
     margin-top: 20px;
     border: 1px solid rgba(0, 170, 255, 0.1);
     display: none;
+    animation: fadeIn 0.5s ease;
 }
 
 .result h2 {
     color: var(--secondary);
     margin-bottom: 15px;
     font-size: 1.5rem;
+    text-shadow: 0 0 10px rgba(0, 170, 255, 0.2);
 }
 
 .result-item {
@@ -234,6 +336,11 @@ select:focus, input:focus {
     margin-bottom: 10px;
     padding-bottom: 10px;
     border-bottom: 1px dashed rgba(0, 170, 255, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.result-item:hover {
+    transform: translateX(5px);
 }
 
 .result-item:last-child {
@@ -241,6 +348,13 @@ select:focus, input:focus {
     font-weight: bold;
     font-size: 1.1rem;
     color: var(--primary);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.8; }
+    100% { opacity: 1; }
 }
 
 /* Stopka */
@@ -249,16 +363,42 @@ footer {
     padding: 20px;
     color: var(--gray);
     font-size: 0.9rem;
+    animation: fadeInUp 0.8s ease-out forwards 0.8s;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 footer a {
     color: var(--secondary);
     text-decoration: none;
     transition: color 0.3s ease;
+    position: relative;
+}
+
+footer a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
 }
 
 footer a:hover {
     color: var(--primary);
+}
+
+footer a:hover::after {
+    width: 100%;
 }
 
 /* Responsywność */
@@ -305,10 +445,21 @@ select {
 
 select:hover {
     background-color: rgba(10, 14, 23, 1);
+    box-shadow: 0 0 10px rgba(0, 170, 255, 0.2);
 }
 
 select:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 2px rgba(0, 170, 255, 0.2);
+    box-shadow: 0 0 0 2px rgba(0, 170, 255, 0.2),
+                0 0 15px rgba(0, 170, 255, 0.1);
+}
+
+/* Dodatkowe efekty */
+.glow-on-hover {
+    transition: box-shadow 0.3s ease;
+}
+
+.glow-on-hover:hover {
+    box-shadow: 0 0 15px rgba(0, 170, 255, 0.4);
 }

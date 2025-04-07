@@ -55,35 +55,6 @@ body:hover #bg-video {
     padding: 0 20px;
 }
 
-/* Dark/Light Mode Toggle */
-.theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1001;
-    background: rgba(0, 170, 255, 0.2);
-    border: 1px solid rgba(0, 170, 255, 0.3);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-}
-
-.theme-toggle:hover {
-    background: rgba(0, 170, 255, 0.3);
-    transform: scale(1.1);
-}
-
-.theme-toggle i {
-    font-size: 1.2rem;
-    color: var(--light);
-}
-
 /* Nawigacja */
 nav {
     display: flex;
@@ -345,6 +316,7 @@ footer a:hover {
     
     h1 {
         font-size: 2.5rem;
+        margin-top: 40px;
     }
     
     .hero p {
@@ -354,18 +326,12 @@ footer a:hover {
     .tools-grid {
         grid-template-columns: 1fr;
     }
-
-    .theme-toggle {
-        width: 40px;
-        height: 40px;
-        top: 15px;
-        right: 15px;
-    }
 }
 
 @media (max-width: 480px) {
     h1 {
         font-size: 2rem;
+        margin-top: 50px;
     }
     
     h2 {

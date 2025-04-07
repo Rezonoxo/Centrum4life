@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-theme="dark"></body>
     <nav>
         <a href="kalkulator_pp.html" class="calc-button" data-transition>
             <i class="fas fa-calculator"></i> Kalkulator PP
@@ -60,10 +60,10 @@
         </div>
     </main>
 
-    <!-- Przycisk "Do góry" -->
     <div class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </div>
+
     <section class="info-zone">
         <div class="container">
             <h2><i class="fas fa-info-circle"></i> Strefa Informacyjna</h2>
@@ -92,80 +92,29 @@
     </footer>
 
     <script>
-        // Aktualizacja roku w stopce
         document.getElementById('year').textContent = new Date().getFullYear();
-        
-        // Dark/Light Mode Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        
-        // Sprawdź zapisany theme z localStorage
-        const currentTheme = localStorage.getItem('theme') || 'dark';
-        body.setAttribute('data-theme', currentTheme);
-        
-        // Ustaw odpowiednią ikonę
-        if (currentTheme === 'light') {
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        } else {
-            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        }
-        
-        themeToggle.addEventListener('click', () => {
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.setAttribute('data-theme', 'light');
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                localStorage.setItem('theme', 'light');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                localStorage.setItem('theme', 'dark');
-            }
-        });
-        
-        // Przycisk "Do góry"
+
         const backToTop = document.getElementById('backToTop');
-        
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
+            backToTop.classList.toggle('visible', window.pageYOffset > 300);
         });
-        
+
         backToTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-        
-        // Animowane przejścia między stronami
+
         document.querySelectorAll('[data-transition]').forEach(link => {
             link.addEventListener('click', (e) => {
                 if (link.href && !link.target) {
                     e.preventDefault();
-                    body.classList.add('page-transition');
-                    
-                    setTimeout(() => {
-                        window.location.href = link.href;
-                    }, 500);
+                    document.body.classList.add('page-transition');
+                    setTimeout(() => window.location.href = link.href, 500);
                 }
             });
         });
-        
-        // Parallax dla tła
-        window.addEventListener('scroll', () => {
-            const scrollPosition = window.pageYOffset;
-            const video = document.getElementById('bg-video');
-            video.style.transform = `translate(-50%, -50%) translateY(${scrollPosition * 0.3}px)`;
-        });
-        
-        // Efekt ładowania strony
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                body.style.opacity = '1';
-            }, 100);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => document.body.style.opacity = '1', 100);
         });
     </script>
 </body>

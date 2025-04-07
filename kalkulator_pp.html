@@ -3,51 +3,149 @@
 <head>
   <meta charset="UTF-8">
   <title>Kalkulator Handlu Punktami Premium</title>
-  <link rel="stylesheet" href="pp.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="pp.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="pp.css">
 </head>
-<button onclick="window.location.href='index.html'">STRONA GŁÓWNA</button>
 <body>
-  <h1>Kalkulator Inwestycyjny</h1>
-  <h3 style="text-align: center;">Premium Points 💵</h3>
-  
-  <label for="calcType">Wybierz sposób obliczeń:</label>
-  <select id="calcType" onchange="toggleInput()">
-    <option value="budget">Oblicz na podstawie budżetu</option>
-    <option value="quantity">Oblicz na podstawie ilości punktów</option>
-  </select>
-  
-  <div id="budgetInput">
-    <label for="budget">Budżet (PLN):</label>
-    <input type="number" id="budget" placeholder="Wpisz swój budżet" step="any">
-  </div>
-  
-  <div id="quantityInput" style="display: none;">
-    <label for="quantity">Ilość punktów:</label>
-    <input type="number" id="quantity" placeholder="Wpisz ilość punktów" step="1">
-  </div>
+  <main>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Strona Główna
+        </a>
+        <a href="#" class="nav-brand">
+            <i class="fas fa-coins"></i> Kalkulator Punktów Premium
+        </a>
+    </nav>
+      <section class="hero">
+        <h1><i class="fas fa-coins"></i>  Kalkulator Handlu Punktami Premium <i class="fas fa-coins"></i></h1>
+      </section>
+<div class="calculator-card">
+        <div class="form-group">
+          <label for="calcType">Wybierz sposób obliczeń:</label>
+          <select id="calcType" onchange="toggleInput()">
+            <option value="budget">Oblicz na podstawie budżetu</option>
+            <option value="quantity">Oblicz na podstawie ilości punktów</option>
+          </select>
+        </div>
 
-  <label for="buyRate">Stawka skupu (PLN za punkt):</label>
-  <input type="number" id="buyRate" placeholder="Wpisz stawkę skupu" step="any">
+        <div id="budgetInput" class="form-group">
+          <label for="budget">Budżet (PLN):</label>
+          <input type="number" id="budget" placeholder="Wpisz swój budżet" step="any">
+        </div>
 
-  <label for="sellRate">Stawka sprzedaży (PLN za punkt):</label>
-  <input type="number" id="sellRate" value="7" placeholder="Wpisz stawkę sprzedaży" step="any">
-  <small>Domyślnie stawka ustalona na 7PLN/szt ( Średnia optymalna cena )</small>
-  <label for="round">Zaokrąglanie:</label>
-  <select id="round">
-    <option value="round">Zaokrąglenie do liczby</option>
-    <option value="error_margin">Błąd pomiarowy</option>
-    <option value="none">Brak</option>
-  </select>
+        <div id="quantityInput" class="form-group" style="display: none;">
+          <label for="quantity">Ilość punktów:</label>
+          <input type="number" id="quantity" placeholder="Wpisz ilość punktów" step="1">
+        </div>
 
-  <button onclick="calculate()">Oblicz ✅</button>
+        <div class="form-group">
+          <label for="buyRate">Stawka skupu (PLN za punkt):</label>
+          <input type="number" id="buyRate" placeholder="Wpisz stawkę skupu" step="any">
+        </div>
 
-  <div class="result" id="result"></div>
+        <div class="form-group">
+          <label for="sellRate">Stawka sprzedaży (PLN za punkt):</label>
+          <input type="number" id="sellRate" value="7" placeholder="Wpisz stawkę sprzedaży" step="any">
+          <small>Domyślnie stawka ustalona na 7PLN/szt (Średnia optymalna cena)</small>
+        </div>
+
+        <div class="form-group">
+          <label for="round">Zaokrąglanie:</label>
+          <select id="round">
+            <option value="round">Zaokrąglenie do liczby</option>
+            <option value="error_margin">Błąd pomiarowy</option>
+            <option value="none">Brak</option>
+          </select>
+        </div>
+
+        <button class="calculate-btn" onclick="calculate()">
+          <i class="fas fa-calculator"></i> Oblicz
+        </button>
+
+        <div id="result" class="result">
+          <h2><i class="fas fa-coins"></i> Wynik</h2>
+          <div class="result-item">
+            <span>Budżet:</span>
+            <span id="result-budget">0 PLN</span>
+          </div>
+          <div class="result-item">
+            <span>Ilość punktów:</span>
+            <span id="result-quantity">0</span>
+          </div>
+          <div class="result-item">
+            <span>ZAROBEK NETTO:</span>
+            <span id="result-total">0 PLN</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
   <footer>
-    Strona stworzona przez<a href="https://mta4life.pl/profile/85807-nozer/"> Nozer</a>'a
+    <p>Strona stworzona przez <a href="https://mta4life.pl/profile/85807</div>-nozer/">Nozer</a>'a</p>
     <p>Wszelkie prawa zastrzeżone</p>
-    
   </footer>
+  <script>
+function toggleInput() {
+  const type = document.getElementById("calcType").value;
+  document.getElementById("budgetInput").style.display = type === "budget" ? "block" : "none";
+  document.getElementById("quantityInput").style.display = type === "quantity" ? "block" : "none";
+}
+
+function roundValue(value, method) {
+  if (method === "error_margin") return Math.round((value - value * 0.05));
+  if (method === "round") return Math.round(value);
+  return value;
+}
+
+function calculate() {
+  const calcType = document.getElementById("calcType").value;
+  const buyRate = parseFloat(document.getElementById("buyRate").value);
+  const sellRate = parseFloat(document.getElementById("sellRate").value);
+  const roundMethod = document.getElementById("round").value;
+  let pointsBought, totalSell, profit;
+
+  if (isNaN(buyRate) || isNaN(sellRate)) {
+    alert("Proszę wpisać poprawne wartości we wszystkich polach!");
+    return;
+  }
+
+  if (calcType === "budget") {
+    const budget = parseFloat(document.getElementById("budget").value);
+    if (isNaN(budget)) {
+      alert("Proszę wpisać poprawny budżet!");
+      return;
+    }
+    pointsBought = budget / buyRate;
+  } else {
+    pointsBought = parseFloat(document.getElementById("quantity").value);
+    if (isNaN(pointsBought)) {
+      alert("Proszę wpisać poprawną ilość punktów!");
+      return;
+    }
+  }
+
+  pointsBought = roundValue(pointsBought, roundMethod);
+  totalSell = roundValue(pointsBought * sellRate, roundMethod);
+  profit = roundValue(totalSell - (pointsBought * buyRate), roundMethod, buyRate);
+
+  document.getElementById("result-budget").textContent = `${(calcType === "budget" ? document.getElementById("budget").value : (pointsBought * buyRate).toFixed(2))} PLN`;
+  document.getElementById("result-quantity").textContent = `${pointsBought}`;
+  const profitElement = document.getElementById("result-total");
+  profitElement.textContent = `${profit} PLN`;
+
+  // Change color to red if profit is negative, green if positive
+  if (profit < 0) {
+    profitElement.style.color = "red";
+  } else if (profit > 0) {
+    profitElement.style.color = "green";
+  } else {
+    profitElement.style.color = ""; // Reset to default color
+  }
+
+  document.getElementById("result").style.display = "block";
+}
+  </script>
 </body>
 </html>
