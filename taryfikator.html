@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Mandatów 4Life</title>
+  <style>
+    :root {
+        --primary: #00aaff;
+        --primary-dark: #0088cc;
+        --secondary: #00ccff;
+        --dark: #0a0e17;
+        --darker: #05090f;
+        --light: #f0f8ff;
+        --gray: #8a8a8a;
+        --overlay: rgba(5, 9, 15, 0.85);
+        --bg-video-filter: brightness(0.4) contrast(1.2);
+        --card-bg: rgba(10, 14, 23, 0.7);
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Roboto', sans-serif;
+        color: var(--light);
+        background: var(--dark);
+        line-height: 1.6;
+        opacity: 0;
+        animation: fadeIn 1s ease-in-out forwards;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+        margin: 30px 0;
+        text-align: center;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 0 15px rgba(0, 170, 255, 0.3);
+    }
+    
+    .section {
+        background: var(--card-bg);
+        backdrop-filter: blur(10px);
+        padding: 25px;
+        border-radius: 12px;
+        margin: 20px auto;
+        max-width: 800px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(0, 170, 255, 0.1);
+        transform: translateY(20px);
+        opacity: 0;
+        animation: cardAppear 0.8s ease forwards;
+    }
+    
+    @keyframes cardAppear {
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    h2 {
+        color: var(--secondary);
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(0, 170, 255, 0.2);
+    }
+    
+    form {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 15px;
+    }
+    
+    label {
+        display: flex;
+        align-items: center;
+        padding: 12px 15px;
+        margin: 8px 0;
+        background: rgba(0, 170, 255, 0.05);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: 1px solid rgba(0, 170, 255, 0.1);
+    }
+    
+    label:hover {
+        background: rgba(0, 170, 255, 0.1);
+        transform: translateX(5px);
+    }
+    
+    input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin-right: 12px;
+        accent-color: var(--primary);
+        cursor: pointer;
+    }
+    
+    input[type="number"] {
+        width: 100px;
+        padding: 8px 12px;
+        margin-left: 10px;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(0, 170, 255, 0.3);
+        border-radius: 6px;
+        color: var(--light);
+        transition: all 0.3s ease;
+    }
+    
+    input[type="number"]:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(0, 170, 255, 0.2);
+    }
+    
+    button {
+        grid-column: 1 / -1;
+        padding: 14px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--darker);
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 15px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transition: 0.5s;
+    }
+    
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 170, 255, 0.3);
+    }
+    
+    button:hover::before {
+        left: 100%;
+    }
+    
+    .result {
+        padding: 15px;
+        margin-top: 20px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+        border-left: 4px solid var(--primary);
+        animation: fadeIn 0.5s ease;
+    }
+    
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem;
+        }
+        
+        .section {
+            margin: 20px;
+            padding: 20px;
+        }
+        
+        form {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.8rem;
+        }
+        
+        label {
+            padding: 10px;
+            font-size: 0.95rem;
+        }
+    }
+    
+    #jailForm label:hover {
+        border-color: var(--secondary);
+        background: rgba(0, 204, 255, 0.1);
+        transform: translateX(5px);
+    }
+    
+    #jailForm button {
+        background: linear-gradient(135deg, var(--secondary), #00aaff);
+        box-shadow: 0 5px 15px rgba(0, 204, 255, 0.3);
+    }
+    
+    #jailForm button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 204, 255, 0.4);
+    }
+    
+    #jailForm .result {
+        border-left-color: var(--secondary);
+        background: rgba(0, 204, 255, 0.1);
+        color: var(--light);
+        font-size: 1.2rem;
+        animation: fadeIn 0.5s ease, pulse 1.5s infinite;
+    }
+    #parkingResult {
+        border-left-color: var(--primary);
+        background: rgba(0, 170, 255, 0.1);
+        color: var(--light);
+        font-size: 1.2rem;
+        animation: fadeIn 0.5s ease, pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+        0%, 100% {
+            box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+        }
+        50% {
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.8);
+        }
+    }
+    nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(10, 14, 23, 0.9);
+    backdrop-filter: blur(15px) saturate(180%);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(0, 170, 255, 0.1);
+    animation: slideDown 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.2s;
+    transform: translateY(-100%);
+}
+
+@keyframes slideDown {
+    to { transform: translateY(0); }
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--light);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.nav-brand:hover {
+    text-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+}
+
+.nav-brand i {
+    color: var(--primary);
+    transition: transform 0.3s ease;
+}
+
+.nav-brand:hover i {
+    transform: scale(1.2);
+}
+
+.back-button {
+    background: rgba(0, 170, 255, 0.15);
+    color: var(--light);
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 170, 255, 0.2);
+}
+
+.back-button:hover {
+    background: rgba(0, 170, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 170, 255, 0.2);
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Strona Główna
+        </a>
+        <a href="#" class="nav-brand">
+            <i class="fas fa-fire"></i> Kalkulator Mandatów
+        </a>
+    </nav>
+
+  <div class="section">
+    <h2>Taryfikator parkingu Policyjnego</h2>
+    <form id="parkingForm">
+      <label><input type="checkbox" value="2500"> Pojazd pozostawiony na terenie bazy frakcji</label>
+      <label><input type="checkbox" value="1500"> Brak opłaty parkingowej na parkingu płatnym</label>
+      <label><input type="checkbox" value="1500"> Pojazd w miejscu pojazdu pracy</label>
+      <label><input type="checkbox" value="900"> Pojazd utrudniający ruch (z ręcznym)</label>
+      <label><input type="checkbox" value="900"> Pojazd zastawiający wjazd na teren bazy służb</label>
+      <label><input type="checkbox" value="750"> Brak opłaty parkingowej (magazyn/kosiarki)</label>
+      <label><input type="checkbox" value="750"> Pojazd porzucony/utrudniający ruch</label>
+      <label><input type="checkbox" value="750"> Pojazd uszkodzony na giełdzie</label>
+      <label><input type="checkbox" value="750"> Pojazd na terenie zamkniętym</label>
+      <label><input type="checkbox" value="750"> Parkowanie na parkingu służb (bez zezwolenia)</label>
+      <label><input type="checkbox" value="600"> Porzucony na giełdzie</label>
+      <label><input type="checkbox" value="600"> Zakaz zatrzymywania się</label>
+      <label><input type="checkbox" value="600"> Postój na TAXI</label>
+      <label><input type="checkbox" value="450"> Nieprawidłowe parkowanie</label>
+      <label><input type="checkbox" value="450"> Nieprawidłowe parkowanie na giełdzie</label>
+      <label><input type="checkbox" value="200"> Odholowanie na życzenie właściciela</label>
+      <label><input type="checkbox" value="0"> Pojazd przy opuszczonej posesji</label>
+      <label><input type="checkbox" value="0"> Parkowanie powyżej 24h</label>
+      <label><input type="checkbox" value="0"> Pojazd po akcji RP</label>
+      <label><input type="checkbox" value="custom" id="customPenalty"> Pojazd użyty do ucieczki (wpisz kwotę): <input type="number" id="customValue" disabled></label>
+      <button type="button" onclick="calculateParkingFine()">Oblicz mandat</button>
+      <div class="result" id="parkingResult"></div>
+    </form>
+  </div>
+
+  <div class="section">
+    <h2>Taryfikator więzienny</h2>
+    <form id="jailForm">
+      <label><input type="checkbox" value="30"> Poszukiwany (waga wpisu: max 30 min)</label>
+      <label><input type="checkbox" value="20"> Organizowanie nielegalnych wyścigów</label>
+      <label><input type="checkbox" value="15"> Uczestnictwo w nielegalnych wyścigach</label>
+      <label><input type="checkbox" value="20"> Wjazd na strefę DM podczas ucieczki</label>
+      <label><input type="checkbox" value="30"> Użycie broni palnej wobec SAPD</label>
+      <label><input type="checkbox" value="50"> Zabójstwo funkcjonariusza</label>
+      <label><input type="checkbox" value="30"> Zagrożenie życia funkcjonariusza lub cywila</label>
+      <label><input type="checkbox" value="15"> Zakłócanie porządku publicznego</label>
+      <label><input type="checkbox" value="40"> Celowe zabicie się / tpev / wyjście</label>
+      <label><input type="checkbox" value="20"> Utrudnianie działań SAPD</label>
+      <label><input type="checkbox" value="25"> Blokowanie radiowozu na strefie DM</label>
+      <label><input type="checkbox" value="15"> Oszustwo funkcjonariusza</label>
+      <button type="button" onclick="calculateJailTime()">Oblicz czas więzienia</button>
+      <div class="result" id="jailResult"></div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('customPenalty').addEventListener('change', function () {
+      document.getElementById('customValue').disabled = !this.checked;
+    });
+
+    function calculateParkingFine() {
+      const checkboxes = document.querySelectorAll('#parkingForm input[type="checkbox"]');
+      let total = 0;
+      checkboxes.forEach(cb => {
+        if (cb.checked && cb.value !== 'custom') total += parseInt(cb.value) || 0;
+      });
+      if (document.getElementById('customPenalty').checked) {
+        const custom = parseInt(document.getElementById('customValue').value);
+        total += isNaN(custom) ? 0 : custom;
+      }
+      document.getElementById('parkingResult').innerText = `Łączna kwota mandatu: ${total} PLN`;
+    }
+
+    function calculateJailTime() {
+      const checkboxes = document.querySelectorAll('#jailForm input[type="checkbox"]');
+      let total = 0;
+      checkboxes.forEach(cb => {
+        if (cb.checked) total += parseInt(cb.value) || 0;
+      });
+      document.getElementById('jailResult').innerText = `Łączny czas więzienia: ${total} minut`;
+    }
+  </script>
+</body>
+</html>
