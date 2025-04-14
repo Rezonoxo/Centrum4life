@@ -14,6 +14,15 @@
         <a href="index.html" class="back-button">
             <i class="fas fa-arrow-left"></i> Strona Główna
         </a>
+        <button id="musicButton" class="fas fa-music" aria-label="Włącz/wyłącz muzykę" style="margin-left: auto;">
+          <div id="playIcon" class="play-icon"></div>
+          <div id="pauseIcon" class="pause-icon hidden"></div>
+      </button>
+      <!-- Element audio z plikiem muzycznym -->
+      <audio id="backgroundMusic">
+          <source src="background.mp3" type="audio/mpeg">
+          Twoja przeglądarka nie obsługuje elementu audio.
+      </audio><script src="background.js"></script>
         <a href="#" class="nav-brand">
             <i class="fas fa-coins"></i> Kalkulator Punktów Premium
         </a>

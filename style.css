@@ -383,3 +383,30 @@ body::before {
 body.page-transition::before {
     opacity: 1;
 }
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(10, 14, 23, 0.7);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 10px;
+    border: 3px solid rgba(10, 14, 23, 0.7);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    box-shadow: 0 0 10px rgba(0, 170, 255, 0.3);
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) rgba(10, 14, 23, 0.7);
+}
